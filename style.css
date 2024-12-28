@@ -1,0 +1,331 @@
+
+body{
+   /* background-image: url(""); */
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   height: 100vh;
+   margin: 0;
+   /* background: #fafcfc; */
+   background-color: rgb(255, 255, 255);
+   /* justify-content: center;
+   align-items: center; */
+   /* display: flex; */
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 400px;
+    /* height: 350px; */
+    padding: 20px;
+    background-color: rgba(255, 255, 250, 0.5);
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+ 
+/* Title */
+.login-box h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* banner css */
+.banner {
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+}
+ 
+.banner img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+ 
+.banner-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+ 
+.banner-overlay h2 {
+    font-size: 3rem;
+}
+ 
+.banner-overlay p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+ 
+.banner-overlay .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+ 
+/* Input Groups */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+ 
+.input-group i {
+    color: #888;
+    margin-right: 10px;
+}
+ 
+.input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 5px;
+    font-size: 14px;
+    background-color: transparent;
+}
+ 
+/* Remember Me Section */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+ 
+.remember-me input {
+    margin-right: 5px;
+}
+ 
+.remember-me label {
+    font-size: 14px;
+    color: #555;
+}
+ 
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #d16ba5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+ 
+.login-btn:hover {
+    background-color: #b2558c;
+}
+ 
+/* Signup container */
+.signup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    
+    border-radius: 15px;
+    
+}
+/* Sign-Up Link */
+.signup-text {
+    font-size: 14px;
+    color: #888;
+}
+ 
+.signup-text a {
+    color: #d16ba5;
+    font-weight: bold;
+    text-decoration: none;
+}
+ 
+.signup-text a:hover {
+    text-decoration: underline;
+}
+.error {
+    color: red;
+    font-size: 12px;
+}
+input {
+    margin: 10px 0;
+    padding: 8px;
+    width: 150px;
+}
+#successMessage {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: none;
+    text-align: center;
+}
+.product-container img{
+    height: 250px;
+}
+
+
+/* .bg-dark{
+    background-color: rgb(65, 109, 109);
+} */
+
+.navbar-logo{
+    height: 50px;
+    width: 80px;
+    /* object-fit: contain; */
+    /* max-height: 100%; */
+}
+
+.navbar{
+    padding: .5rem 1rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    background-color: #f8f8f7;
+}
+
+.welcome{
+    position: static;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+    font-family: 'Arial',sans-serif;
+}
+
+.product-card {
+    margin-bottom: 20px;
+    /* z-index: 1000; */
+    /* size-adjust: ; */
+}
+
+.category-item {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(240, 240, 231, 0.5); 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.category-item:hover {
+    background-color: #80cfeb;
+}
+
+.category-menu {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    z-index: 1000;
+    size-adjust:22% ;
+}
+
+.product-container .product-card {
+    width: 22%;
+    height: 33%;
+}
+
+
+/*slideshow*/
+.slideshow-container{
+    position: relative;
+    margin: auto;
+}
+.mySlides1, .mySlides2, .mySlides3,.mySlides4,.mySlides5, .mySlides6, .mySlides7, .mySlides8, .mySlides9, .mySlides10, .mySlides11,.mySlides12
+.mySlides13, .mySlides14, .mySlides15,.mySlides16,.mySlides17, .mySlides18, .mySlides19,.mySlides20,.mySlides21, .mySlides22, .mySlides23,.mySlides24
+{
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+/* Position the "next button" to the right */
+.next{
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}  
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+
+/* //checkout icon */
+
+.counter-container{
+    border:1px solid #ffffff20;
+    border-radius: .1rem;
+    width: 3.3rem;
+    height: 3.3rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.counter-container svg{
+    width: 3rem;
+    color: #fff;
+
+}
+
+.counter-container span{
+    user-select: none;
+    position: absolute;
+    background: yellow;
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: .8rem;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: .2rem;
+    right: .3rem;
+}
+
+.counter-container span:not(.animated-counter){
+display: none;
+
+}
+.counter-container span .animated-counter{
+    animation: count .4s ease-in-out;
+}
+
+

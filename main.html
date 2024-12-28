@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-Commerce Store</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+ 
+<body>
+   
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="image/dhar-mann-gif-testing (1).gif" class="navbar-logo" alt="icon"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/template/about.html" target="_blank">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#footer">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link add-to-cart-button counter-container" id="cartvalue ">
+                            <i class="fa-solid fa-cart-shopping "></i>
+                            <span id="counter">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-taggle" id="profileDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="image\icons8-person-24.png" class="rounded-circle" alt="Profile">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" >
+                            <li><span class="dropdown-item" id="username"></span></li>
+                            <li><span class="dropdown-item" id="email"></span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="cart.html" class="dropdown-item">Checkout</a></li>
+                            <li><a href="#" id="logout" class="dropdown-item" onclick="logout()">Logout</a></li>
+                        </ul>
+ 
+                    </li>
+                    
+ 
+                    <!-- <li class="nav-item-logout" id="log-out" >
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-image">
+ 
+    </div>
+    <div>
+        <h3 id="welcome" class="welcome"></h3>
+    </div>
+    <!-- Banner Section -->
+    <div class="container my-4">
+        <div class="banner text-center">
+            <img src="image\banner.jpg" alt="End Year Sale Banner" class="img-fluid rounded">
+            <div class="banner-overlay">
+                <h2 class="text-white fw-bold">End of Year Sales!</h2>
+                <p class="text-white">Up to 50% off on Electronics, Clothing, and more. Hurry, offer ends soon!</p>
+                <a href="#mid" class="btn btn-warning">Shop Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- Filters Section -->
+    <div class="container my-4">
+        <div class="row">
+            <!-- Category Filter -->
+            <div class="col-md-6">
+                <select id="categoryFilter" class="form-select" onchange="applyFilters()">
+                    <option value="">Select Category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="appliances">Home Appliances</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="col-md-6">
+                <select id="priceFilter" class="form-select" onchange="applyFilters()">
+                    <option value="">Select Price Range</option>
+                    <option value="0-500">Under Rs.500</option>
+                    <option value="500-1000">Rs.500 - Rs.1000</option>
+                    <option value="1000-5000">Rs.1000 - Rs.5000</option>
+                    <option value="5000+">Rs.5000+</option>
+                </select>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Categories Section -->
+    <!-- <div class="container category-menu">
+        <h2>Shop by Category</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('electronics')">Electronics</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('clothing')">Clothing</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('appliances')">Home Appliances</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('books')">Books</div>
+            </div>
+        </div>
+    </div> -->
+    
+    <!-- Products Section -->
+    <div class="container product-container" id="product-container">
+        <!-- Electronics -->
+        <div class="product-card electronics" data-price="1999.99">
+            <div class="card">
+                
+                <!-- <img  src="image/headphone.png" class="card-img-top" alt="Product 1"> -->
+                
+                <div class="slideshow-container">
+                    <div class="mySlides1">
+                    <img src="image/headphone.png" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides1">
+                        <img src="image/headphone2.png" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides1">
+                        <img src="image/headphone3.png" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,0)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Boat Headphone 60hrs Battery</h6>
+                    <h7>Black on the ears</h7>
+                    <p class="card-text">Rs.1999.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <div>
+                    <a href="#" class="btn btn-primary" id="btn_add1">Add to Cart</a>
+                    </div>
+                </div>  
+               
+            </div>
+           
+        </div>
+        <div class="product-card electronics" data-price="88000">
+            <div class="card">
+                <!-- <img src="image/iphone2.png" class="card-img-top" alt="Product 1"> -->
+
+                <div class="slideshow-container">
+                    <div class="mySlides2">
+                    <img src="image/iphone1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides2">
+                        <img src="image/iphone2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides2">
+                        <img src="image/iphone3.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,1)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Apple iPhone 15 (Black, 128 GB)</h6>
+                    <h7>Black Color</h7>
+                    <p class="card-text">Rs.88000</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add2">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+ 
+        <div class="product-card electronics" data-price="60,990">
+            <div class="card">
+                <!-- <img src="image\laptop1.jpeg" class="card-img-top" alt="Product 1"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides3">
+                    <img src="image/laptop1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides3">
+                        <img src="image/laptop2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides3">
+                        <img src="image/laptop3.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,2)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,2)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">HP Victus Intel Core i5 12th Gen - (16 GB/512 GB SSD)</h6>
+                    <h7>15.6 inch, Performance Blue</h7>
+                    <p class="card-text">Rs.60,990</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary" id="btn_add3">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>  
+ 
+        <div class="product-card electronics" data-price="850">
+            <div class="card">
+                <!-- <img src="image/powerbank.jpg" class="card-img-top" alt="Product 1"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides4">
+                    <img src="image/powerbank1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides4">
+                        <img src="image/powerbank2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides4">
+                        <img src="image/powerbank.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,3)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,3)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Ambrane 10000 mAh Power Bank</h6>
+                    <h7>Black Lithium Polymer</h7>
+                    <p class="card-text">Rs.850</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary" id="btn_add4">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+ 
+        <div class="product-card electronics" data-price="23904">
+            <div class="card">
+                <!-- <img src="image\airpods1.jpg" class="card-img-top" alt="Product 1"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides5">
+                    <img src="image/airpods1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides5">
+                        <img src="image/airpods2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides5">
+                        <img src="image/airpods3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,4)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,4)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Apple AirPods Pro 2nd Generation</h6>
+                    <h7>Spatial Audio With MagSafe Case</h7>
+                    <p class="card-text">Rs.23904</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary" id="btn_add5">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+ 
+        <div class="product-card electronics" data-price="650">
+            <div class="card">
+                <!-- <img src="image\trimmer1.jpeg" class="card-img-top" alt="Product 1"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides6">
+                    <img src="image/trimmer1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides6">
+                        <img src="image/trimmer2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides6">
+                        <img src="image/trimmer1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,5)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,5)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">NOVA Trimmer 60 min</h6>
+                    <h7>Black, Bluer</h7>
+                    <p class="card-text">Rs.650</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary" id="btn_add6">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+ 
+        <!-- Clothing -->
+        <!-- <h3></h3> -->
+       
+ 
+        <div class="product-card clothing" data-price="1295" id="mid">
+            <div class="card">
+                <!-- <img src="image\blue-dress1.jpeg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides7">
+                    <img src="image/blue-dress1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides7">
+                        <img src="image/blue-dress2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides7">
+                        <img src="image/blue-dress1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,6)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,6)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Women Printed Pure Cotton Straight Kurta  (Blue)</h6>
+                    <p class="card-text">Rs.1295</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add7">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing" data-price="1295">
+            <div class="card">
+                <!-- <img src="image\jeans1.jpeg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides8">
+                    <img src="image/jeans1.jpeg" class="card-img-top" alt="Product 2">
+                    </div>
+                    <div class="mySlides8">
+                        <img src="image/jeans2.jpeg" class="card-img-top" alt="Product 2">
+                    </div>
+                    <div class="mySlides8">
+                        <img src="image/jeans3.jpeg" class="card-img-top" alt="Product 2">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,7)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,7)">&#10095;</a>
+                </div>   
+                <div class="card-body">
+                    <h6 class="card-title">Men Loose Fit Mid Rise Light Blue/Black Jeans</h6>
+                    <p class="card-text">Rs.1295</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add8">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing" data-price="1295">
+            <div class="card">
+                <!-- <img src="image\slipper1.jpg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides9">
+                    <img src="image/slipper1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides9">
+                        <img src="image/slipper2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides9">
+                        <img src="image/slipper3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,8)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,8)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        ADIDAS Unisex Printed Thong Flip-Flops</h6>
+                    <p class="card-text">Rs.1779</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add9">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-card clothing" data-price="1295">
+            <div class="card">
+                <!-- <img src="image\swimwear1.jpg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides10">
+                    <img src="image/swimwear1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides10">
+                        <img src="image/swimwear2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides10">
+                        <img src="image/swimwear3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,9)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,9)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        Speedo Short Sleeves Closedback Swimdress</h6>
+                    <p class="card-text">Rs. 2599</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add10">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing" data-price="2500">
+            <div class="card">
+                <!-- <img src="image\jacket1.jpeg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides11">
+                    <img src="image/jacket1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides11">
+                        <img src="image/jacket2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides11">
+                        <img src="image/jacket3.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,10)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,10)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">HIGHLANDER Men Solid Puffer Jacket</h6>
+                    <p class="card-text">Rs.2500</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add11">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing" data-price="17500">
+            <div class="card">
+                <!-- <img src="image\watch1.jpg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides12">
+                    <img src="image/watch1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides12">
+                        <img src="image/watch2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides12">
+                        <img src="image/watch3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,11)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,11)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Armani Exchange Analogue Watch AX4182I-Grey</h6>
+                    <p class="card-text">Rs.17500</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add12">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-card clothing" data-price="685">
+            <div class="card">
+                <!-- <img src="image\redKurti1.jpg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides13">
+                    <img src="image/redKurti1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides13">
+                        <img src="image/redKurti2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides13">
+                        <img src="image/redKurti3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,12)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,12)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">DART STUDIO Women Striped Cotton Anarkali Kurta</h6>
+                    <p class="card-text">Rs.4585</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add13">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing" data-price="980">
+            <div class="card">
+                <!-- <img src="image\blueshirt1.jpg" class="card-img-top" alt="Product 2"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides14">
+                    <img src="image/blueshirt1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides14">
+                        <img src="image/blueshirt2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides14">
+                        <img src="image/blueshirt3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,13)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,13)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Men Regular Fit Solid Spread Collar Casual Shirt</h6>
+                    <p class="card-text">Rs.980</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add14">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+ 
+ 
+ 
+        <!-- Home Appliances -->
+        <div class="product-card appliances" data-price="2300">
+            <div class="card">
+                <!-- <img src="image\mixer3.jpg" class="card-img-top" alt="Product 3"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides15">
+                    <img src="image/mixer1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides15">
+                        <img src="image/mixer2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides15">
+                        <img src="image/mixer3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,14)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,14)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">BAJAJ GX 1500 W Juicer Mixer Grinder (Blue)</h6>
+                    <p class="card-text">Rs.2300</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add15">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card appliances" data-price="2300">
+            <div class="card">
+                <!-- <img src="image\waterheater1.jpg" class="card-img-top" alt="Product 3"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides16">
+                    <img src="image/waterheater1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides16">
+                        <img src="image/waterheater2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides16">
+                        <img src="image/waterheater3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,15)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,15)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        Havells MONZA White & Black 2000W Water Heater 10L</h6>
+                    <p class="card-text">Rs.7000</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add16">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card appliances" data-price="1500">
+            <div class="card">
+                <!-- <img src="image\induction1.jpeg" class="card-img-top" alt="Product 3"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides17">
+                    <img src="image/induction1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides17">
+                        <img src="image/induction2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides17">
+                        <img src="image/induction2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,16)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,16)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Prestige 1600 W Induction Cooktop</h6>
+                    <p class="card-text">Rs.1500</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add17">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card appliances" data-price="3700">
+            <div class="card">
+                <!-- <img src="image\owen1.jpeg" class="card-img-top" alt="Product 3"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides18">
+                    <img src="image/owen1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides18">
+                        <img src="image/owen2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides18">
+                        <img src="image/owen3.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,17)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,17)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Panasonic 20 L Solo Microwave Oven</h6>
+                    <p class="card-text">Rs.3700</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary"  id="btn_add18">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card appliances" data-price="2675">
+            <div class="card">
+                <!-- <img src="image\chair1.jpeg" class="card-img-top" alt="Product 3"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides19">
+                    <img src="image/chair1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides19">
+                        <img src="image/chair2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides19">
+                        <img src="image/chair2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,18)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,18)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Plastic Living Room Chair  (Color Brown)</h6>
+                    <p class="card-text">Rs.2675</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary" id="btn_add19">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <!-- Books -->
+        <div class="product-card books" data-price="599.99">
+            <div class="card">
+                <!-- <img src="image\animal-farm1.jpeg" class="card-img-top" alt="Product 4"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides20">
+                    <img src="image/animal-farm1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides20">
+                        <img src="image/animal-farm2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides20">
+                        <img src="image/animal-farm2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,19)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,19)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Animal Farm (English, Paperback, Orwell George)</h6>
+                    <p class="card-text">Rs.599.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add20">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="359.99">
+            <div class="card">
+                <!-- <img src="image\wf1.jpeg" class="card-img-top" alt="Product 4"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides21">
+                    <img src="image/wf1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides21">
+                        <img src="image/wf2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides21">
+                        <img src="image/wf2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,20)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,20)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">The Warren Buffett Way (Robert G. Hagstrom)</h6>
+                    <p class="card-text">Rs.359.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add21">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="659.99">
+            <div class="card">
+                <!-- <img src="image\chetan1.jpeg" class="card-img-top" alt="Product 4"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides22">
+                    <img src="image/chetan1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides22">
+                        <img src="image/chetan2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides22">
+                        <img src="image/chetan2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,21)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,21)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">The Girl in Room 105  (English, Paperback, Bhagat Chetan)</h6>
+                    <p class="card-text">Rs.659.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add22">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="1999.99">
+            <div class="card">
+                <!-- <img src="image\elon1.jpeg" class="card-img-top" alt="Product 4"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides23">
+                    <img src="image/elon1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides23">
+                        <img src="image/elon2.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides23">
+                        <img src="image/elon1.jpeg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,22)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,22)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Elon Musk  (English, Hardcover, ASHLEE VANCE)</h6>
+                    <p class="card-text">Rs.759.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add23">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card books" data-price="1999.99">
+            <div class="card">
+                <!-- <img src="image\novel1.jpg" class="card-img-top" alt="Product 4"> -->
+                <div class="slideshow-container">
+                    <div class="mySlides24">
+                    <img src="image/novel1.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides24">
+                        <img src="image/novel2.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+                    <div class="mySlides24">
+                        <img src="image/novel3.jpg" class="card-img-top" alt="Product 1">
+                    </div>
+ 
+                    <a class="prev" onclick="plusSlides(-1,23)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1,23)">&#10095;</a>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">The Alchemist Paperback Big Book</h6>
+                    <p class="card-text">Rs.359.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary" id="btn_add24">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+       
+    </div>
+
+
+
+    <footer id="footer" style="background-color: #232f3e; color: #fff; padding: 20px 0; font-family: Arial, sans-serif; margin-top: 40px;">
+        <div class="container">
+            <div class="row">
+                <!-- Get to Know Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Get to Know Us</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="/template/about.html" target="_blank" style="color: #ddd; text-decoration: none;">About MegaCart</a></li>
+                        <li><a href="/template/careers.html" target="_blank" style="color: #ddd; text-decoration: none;">Careers</a></li>
+                        <li><a href="/template/press.html" target="_blank" style="color: #ddd; text-decoration: none;">Press Releases</a></li>
+                        <li><a href="/template/science.html" target="_blank" style="color: #ddd; text-decoration: none;">MegaCart Science</a></li>
+                    </ul>
+                </div>
+   
+                <!-- Connect with Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Connect with Us</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="https://facebook.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Facebook</a></li>
+                        <li><a href="https://twitter.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Twitter</a></li>
+                        <li><a href="https://instagram.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Instagram</a></li>
+                    </ul>
+                </div>
+   
+                <!-- Make Money with Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Consumer policy</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="/template/terms.html" target="_blank" style="color: #ddd; text-decoration: none;">Terms Of use</a></li>
+                        <li><a href="/template/privacy.html" target="_blank" style="color: #ddd; text-decoration: none;">Privacy</a></li>
+                        <li><a href="/template/security.html" target="_blank" style="color: #ddd; text-decoration: none;">Security</a></li>
+                        <li><a href="/template/faq.html" target="_blank" style="color: #ddd; text-decoration: none;">FAQs</a></li>
+                    </ul>
+                </div>
+   
+                <!-- Let Us Help You Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Let Us Help You</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#" style="color: #ddd; text-decoration: none;">Your Account</a></li>
+                        <li><a href="#" style="color: #ddd; text-decoration: none;">Returns Centre</a></li>
+                        <li><a href="#" style="color: #ddd; text-decoration: none;">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+   
+            <!-- Back to Top Button -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="scrollToTop()" style="background-color: #f90; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                    Back to Top
+                </button>
+            </div>
+   
+            <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+                <p>&copy; 2024 MegaCart | All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+   
+   
+   <script>
+    // Cart Data
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Function to update cart count
+    function updateCartCount() {
+        let cartCount = document.getElementById('counter');
+        cartCount.innerText = cart.length;
+    }
+
+    // Function to add item to cart
+    function addToCart(productId, productName, productPrice) {
+        // Create a product object
+        const product = {
+            id: productId,
+            name: productName,
+            price: productPrice
+        };
+
+        // Add product to cart array
+        cart.push(product);
+
+        // Save cart to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Update the cart count
+        updateCartCount();
+    }
+
+    // Attach event listeners to the add-to-cart buttons
+    document.getElementById('btn_add1').addEventListener('click', function() {
+        addToCart(1, 'Boat Headphone 60hrs Battery', 1999.99);
+    });
+ 
+    document.getElementById('btn_add2').addEventListener('click', function() {
+        addToCart(2, 'Apple iPhone 15 (Black, 128 GB)', 88000);
+    });
+ 
+    document.getElementById('btn_add3').addEventListener('click', function() {
+        addToCart(3, 'HP Victus Intel Core i5 12th Gen - (16 GB/512 GB SSD)', 60990);
+    });
+ 
+    document.getElementById('btn_add4').addEventListener('click', function() {
+        addToCart(4, 'Ambrane 10000 mAh Power Bank', 850);
+    });
+ 
+    document.getElementById('btn_add5').addEventListener('click', function() {
+        addToCart(5, 'Apple AirPods Pro 2nd Generation', 23904);
+    });
+ 
+    document.getElementById('btn_add6').addEventListener('click', function() {
+        addToCart(6, 'NOVA Trimmer 60 min', 650);
+    });
+    document.getElementById('btn_add7').addEventListener('click', function() {
+        addToCart(7, 'Women Printed Pure Cotton Straight Kurta', 1295);
+    });
+    document.getElementById('btn_add8').addEventListener('click', function() {
+        addToCart(8, 'Men Loose Fit Mid Rise Light Blue/Black Jeans', 1295);
+    });
+    document.getElementById('btn_add9').addEventListener('click', function() {
+        addToCart(9, 'ADIDAS Unisex Printed Thong Flip-Flops', 1799);
+    });
+    document.getElementById('btn_add10').addEventListener('click', function() {
+        addToCart(10, 'Speedo Short Sleeves Closedback Swimdress', 2599);
+    });
+    document.getElementById('btn_add11').addEventListener('click', function() {
+        addToCart(11, 'HIGHLANDER Men Solid Puffer Jacket', 2500);
+    });
+    document.getElementById('btn_add12').addEventListener('click', function() {
+        addToCart(12, 'Armani Exchange Analogue Watch AX4182I-Grey', 17500);
+    });
+    document.getElementById('btn_add13').addEventListener('click', function() {
+        addToCart(13, 'DART STUDIO Women Striped Cotton Anarkali Kurta', 4585);
+    });
+    document.getElementById('btn_add14').addEventListener('click', function() {
+        addToCart(14, 'Men Regular Fit Solid Spread Collar Casual Shirt', 980);
+    });
+    document.getElementById('btn_add15').addEventListener('click', function() {
+        addToCart(15, 'BAJAJ GX 1500 W Juicer Mixer Grinder (Blue)', 2300);
+    });
+    document.getElementById('btn_add16').addEventListener('click', function() {
+        addToCart(16, 'Havells MONZA White & Black 2000W Water Heater 10L', 7000);
+    });
+    document.getElementById('btn_add17').addEventListener('click', function() {
+        addToCart(17, 'Prestige 1600 W Induction Cooktop', 1500);
+    });
+    document.getElementById('btn_add18').addEventListener('click', function() {
+        addToCart(18, 'Panasonic 20 L Solo Microwave Oven', 3700);
+    });
+    document.getElementById('btn_add19').addEventListener('click', function() {
+        addToCart(19, 'Plastic Living Room Chair (Color Brown)', 2675);
+    });
+    document.getElementById('btn_add20').addEventListener('click', function() {
+        addToCart(20, 'Animal Farm (English, Paperback, Orwell George)', 599.99);
+    });
+    document.getElementById('btn_add21').addEventListener('click', function() {
+        addToCart(21, 'The Warren Buffett Way (Robert G. Hagstrom)', 359.99);
+    });
+    document.getElementById('btn_add22').addEventListener('click', function() {
+        addToCart(22, 'The Girl in Room 105 (English, Paperback, Bhagat Chetan)', 659.99);
+    });
+    document.getElementById('btn_add23').addEventListener('click', function() {
+        addToCart(23, 'Elon Musk (English, Hardcover, ASHLEE VANCE)', 759.99);
+    });
+    document.getElementById('btn_add24').addEventListener('click', function() {
+        addToCart(24, 'The Alchemist Paperback Big Book', 359.99);
+    });
+
+    // Update cart count on page load
+    updateCartCount();
+</script>
+   
+    <script src="javascript/main.js"></script>
+    <script src="javascript/main0.js"></script>
+   
+</body>
+ 
+</html>

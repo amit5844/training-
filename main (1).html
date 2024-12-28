@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-Commerce Store</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+
+<style>/* Filter Section */
+    .filter-section {
+        text-align: center;
+        margin: 20px 0;
+    }
+    
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    .filter-btn:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Product Section */
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .product-card {
+        width: 200px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+    
+    .product-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    </style>
+ 
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="Capstone Project\image\AAH (1).gif" class="navbar-logo" alt="icon"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cart.html" class="nav-link add-to-cart-button" id="cartvalue">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Filters Section -->
+    <div class="container my-4">
+        <div class="row">
+            <!-- Category Filter -->
+            <div class="col-md-6">
+                <select id="categoryFilter" class="form-select" onchange="applyFilters()">
+                    <option value="">Select Category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="appliances">Home Appliances</option>
+                    <option value="books">Books</option>
+                </select>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="col-md-6">
+                <select id="priceFilter" class="form-select" onchange="applyFilters()">
+                    <option value="">Select Price Range</option>
+                    <option value="0-500">Under Rs.500</option>
+                    <option value="500-1000">Rs.500 - Rs.1000</option>
+                    <option value="1000-5000">Rs.1000 - Rs.5000</option>
+                    <option value="5000+">Rs.5000+</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="container category-menu">
+        <h2>Shop by Category</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('electronics')">Electronics</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('clothing')">Clothing</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('appliances')">Home Appliances</div>
+            </div>
+            <div class="col-md-3">
+                <div class="category-item" onclick="filterCategory('books')">Books</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="container product-container" id="product-container">
+        <!-- Electronics -->
+        <div class="product-card electronics" data-price="1999.99">
+            <div class="card">
+                <img src="./image/headphone.png" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h6 class="card-title">Boat Headphone 60hrs Battery</h6>
+                    <h7>Black on the ears</h7>
+                    <p class="card-text">Rs.1999.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>  
+               
+            </div>
+           
+        </div>
+        <div class="product-card electronics" data-price="88000">
+            <div class="card">
+                <img src="./image/iphone2.png" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h6 class="card-title">Apple iPhone 15 (Black, 128 GB)</h6>
+                    <h7>Black Color</h7>
+                    <p class="card-text">Rs.88000</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+        <div class="product-card electronics" data-price="850">
+            <div class="card">
+                <img src="./image/powerbank.jpg" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h6 class="card-title">Ambrane 10000 mAh Power Bank</h6>
+                    <h7>Black Lithium Polymer</h7>
+                    <p class="card-text">Rs.850</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+        <div class="product-card electronics"data-price="650">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/trimmer/a/x/n/0-5-12-mm-nht-1073-00-usb-stainless-steel-cordless-nova-original-imah7jm3xkzmdyww.jpeg?q=70&crop=false" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h6 class="card-title">NOVA Trimmer 60 min</h6>
+                    <h7>Black, Bluer</h7>
+                    <p class="card-text">Rs.650</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+               
+            </div>
+           
+        </div>
+ 
+        <!-- Clothing -->
+       
+ 
+        <div class="product-card clothing"data-price="1295">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/kurta/e/i/6/xl-rf-lotus-kurti-rimeline-fashion-original-imah4zd5j8gxh2ue.jpeg?q=70&crop=false" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h6 class="card-title">Women Printed Pure Cotton Straight Kurta  (Blue)</h6>
+                    <p class="card-text">Rs.1295</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card clothing"data-price="2500">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/612/612/xif0q/jacket/u/d/v/xxl-no-phjk000003-highlander-original-imagtmtfyrmvxk5y.jpeg?q=70" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h6 class="card-title">HIGHLANDER Men Solid Puffer Jacket</h6>
+                    <p class="card-text">Rs.2500</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing"data-price="685">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/ethnic-set/k/e/o/xxl-rfc072-rf-clothes-original-imagjd3yyfah3gsv.jpeg?q=70&crop=false" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h6 class="card-title">Women Viscose Rayon Kurta Pant Dupatta Set</h6>
+                    <p class="card-text">Rs.685</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card clothing"data-price="980">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/612/612/l4x2rgw0/shirt/a/w/x/xl-men-regular-fit-solid-spread-collar-casual-shirt-juhil-bazar-original-imagfppujz3tv5q2.jpeg?q=70" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h6 class="card-title">Men Regular Fit Solid Spread Collar Casual Shirt</h6>
+                    <p class="card-text">Rs.980</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+ 
+ 
+ 
+        <!-- Home Appliances -->
+        <div class="product-card appliances"data-price="2300">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/mixer-grinder-juicer/i/0/m/-original-imaghy69gbrjwkvz.jpeg?q=70&crop=false" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h6 class="card-title">BAJAJ GX 1500 W Juicer Mixer Grinder (Blue)</h6>
+                    <p class="card-text">Rs.2300</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card appliances" data-price="1500">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/induction-cook-top/g/r/p/-original-imagyxuxr58f6wdd.jpeg?q=70&crop=false" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h6 class="card-title">Prestige 1600 W Induction Cooktop</h6>
+                    <p class="card-text">Rs.1500</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card appliances" data-price="3700">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/microwave-new/u/u/c/-original-imagqkfyjr5pazah.jpeg?q=70&crop=false" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h6 class="card-title">Panasonic 20 L Solo Microwave Oven</h6>
+                    <p class="card-text">Rs.3700</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <div class="product-card appliances" data-price="2675">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/xif0q/living-room-chair/7/l/v/50-brown-pp-57-3-onetcsterw01-starten-58-tub-chair-for-indoor-original-imagm3yqmhkpzx98.jpeg?q=70&crop=false"
+                class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h6 class="card-title">Plastic Living Room Chair  (Color Brown)</h6>
+                    <p class="card-text">Rs.2675</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+ 
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+ 
+        <!-- Books -->
+        <div class="product-card books" data-price="599.99">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/kuof5ow0/book/e/0/6/animal-farm-original-imag7r7kzmggedkn.jpeg?q=70&crop=false" class="card-img-top" alt="Product 4">
+                <div class="card-body">
+                    <h6 class="card-title">Animal Farm (English, Paperback, Orwell George)</h6>
+                    <p class="card-text">Rs.599.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="359.99">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/kckud8w0/regionalbooks/z/x/3/the-warren-buffett-way-original-imaftnmjusswz3ja.jpeg?q=70&crop=false"
+                class="card-img-top" alt="Product 4">
+                <div class="card-body">
+                    <h6 class="card-title">The Warren Buffett Way (Robert G. Hagstrom)</h6>
+                    <p class="card-text">Rs.359.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="659.99">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/kkec4280/book/2/b/8/the-girl-in-room-105-original-imafzr6nczgggedw.jpeg?q=70&crop=false" class="card-img-top" alt="Product 4">
+                <div class="card-body">
+                    <h6 class="card-title">The Girl in Room 105  (English, Paperback, Bhagat Chetan)</h6>
+                    <p class="card-text">Rs.659.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="product-card books" data-price="1999.99">
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/832/832/kplisnk0/book/l/l/t/elon-musk-original-imag3shevuu2d9qq.jpeg?q=70&crop=false" class="card-img-top" alt="Product 4">
+                <div class="card-body">
+                    <h6 class="card-title">Elon Musk  (English, Hardcover, ASHLEE VANCE)</h6>
+                    <p class="card-text">Rs.759.99</p>
+                    <p class = "card-desc">Get Delivered in 3-4 days</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+ 
+       
+    </div>
+
+        <!-- Add more product cards here with category and price data attributes -->
+    <!-- </div> -->
+    <footer id="footer" style="background-color: #232f3e; color: #fff; padding: 20px 0; font-family: Arial, sans-serif; margin-top: 40px;">
+        <div class="container">
+            <div class="row">
+                <!-- Get to Know Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Get to Know Us</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="about.html" style="color: #ddd; text-decoration: none;">About MegaCart</a></li>
+                        <li><a href="careers.html" style="color: #ddd; text-decoration: none;">Careers</a></li>
+                        <li><a href="press.html" style="color: #ddd; text-decoration: none;">Press Releases</a></li>
+                        <li><a href="science.html" style="color: #ddd; text-decoration: none;">MegaCart Science</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Connect with Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Connect with Us</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="https://facebook.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Facebook</a></li>
+                        <li><a href="https://twitter.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Twitter</a></li>
+                        <li><a href="https://instagram.com/megacart" target="_blank" style="color: #ddd; text-decoration: none;">Instagram</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Make Money with Us Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Consumer policy</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="terms.html" style="color: #ddd; text-decoration: none;">Terms Of use</a></li>
+                        <li><a href="privacy.html" style="color: #ddd; text-decoration: none;">Privacy</a></li>
+                        <li><a href="security.html" style="color: #ddd; text-decoration: none;">Security</a></li>
+                        <li><a href="faq.html" style="color: #ddd; text-decoration: none;">FAQs</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Let Us Help You Section -->
+                <div class="col-md-3">
+                    <h5 style="color: #fff;">Let Us Help You</h5>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="account.html" style="color: #ddd; text-decoration: none;">Your Account</a></li>
+                        <li><a href="returns.html" style="color: #ddd; text-decoration: none;">Returns Centre</a></li>
+                        <li><a href="help.html" style="color: #ddd; text-decoration: none;">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Back to Top Button -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button onclick="scrollToTop()" style="background-color: #f90; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                    Back to Top
+                </button>
+            </div>
+    
+            <!-- Footer Bottom -->
+            <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+                <p>&copy; 2024 MegaCart | All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    
+    <script src="javascript/main.js"></script>
+    <script src="javascript/main0.js"></script>
+</body>
+
+</html>

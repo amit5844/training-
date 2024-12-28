@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body style="background: url('image/Gift-card.jpg'); background-size: cover;">
+    <div class="signup-container ">
+        <div class="signup-box">
+            <h1>SIGN UP</h1>
+            <form id="signup-form" class="signup-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="User Name"  id="signup-username" >
+                    <span id="usernameerror" class="error"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="Email" id="signup-email">
+                    <span id="emailerror" class="error"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="contact" placeholder="Contact" id="signup-phone"  >
+                    <span id="phoneerror" class="error"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="signup-password" >
+                    <span id="passworderror" class="error"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password" id="signup-confirm-password">
+                    <span id="confirmpassworderror" class="error"></span>
+                </div>
+                <button type="submit" class="login-btn">SIGN UP</button>
+            </form>
+            <!-- Success Message Box -->
+            <div id="successMessage">
+                <p>Form submitted successfully!</p>
+            </div>
+            <!-- <p class="divider">Or sign up with</p>
+            <div class="social-login">
+                <button class="social-btn facebook-btn">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+                <button class="social-btn google-btn">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div> -->
+            <p class="signup-text">Already have an account? <a href="login.html">Login now</a></p>
+        </div>
+    </div>
+
+    <script src="javascript/signup.js"></script>
+</body>
+</html>

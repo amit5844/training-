@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body style="background: url('image/Gift-card.jpg'); background-size: cover;">
+    
+    
+<div class="container">
+
+    <div class="group">
+        <div class="dateTime"></div> <!-- Div to display date and time -->
+    </div>
+
+    <script>
+        function showDateAndTime() {
+            let currentDateTime = new Date();
+            let date = currentDateTime.toLocaleDateString();
+            let time = currentDateTime.toLocaleTimeString();
+            let dateTimeHTML = document.querySelector('.dateTime');
+            if (dateTimeHTML) {
+                dateTimeHTML.innerHTML = `Current Date and Time: ${date} ${time}`;
+            }
+        }
+
+        showDateAndTime();
+        setInterval(showDateAndTime, 1000);
+    </script>
+
+    <div class="checkoutLayout">
+
+        <div class="returnCart">
+            <button><a href="main.html">Keep Shopping</a></button>
+            <h1>List Product in Cart</h1>
+            <div class="list" id="cartItems">
+                <!-- Cart items will be dynamically injected here -->
+            </div>
+        </div>
+
+        <div class="right">
+            <h1>Checkout</h1>
+            <div class="form">
+                <div class="group">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+
+                <div class="group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="phone" id="phone">
+                </div>
+
+                <div class="group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address">
+                </div>
+
+                <div class="group">
+                    <label for="country">Country</label>
+                    <select name="country" id="country">
+                        <option value="">Choose..</option>
+                        <option value="india">India</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label for="city">City</label>
+                    <select name="city" id="city">
+                        <option value="">Choose..</option>
+                        <option value="Noida">Noida</option>
+                        <option value="Gurgaon">Gurgaon</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="return">
+                <div class="row">
+                    <div>Total Quantity</div>
+                    <div class="totalQuantity" id="totalQuantity">0</div>
+                </div>
+                <div class="row">
+                    <div>Total Price</div>
+                    <div class="totalPrice" id="totalPrice">$0.00</div>
+                </div>
+            </div>
+
+            <button class="buttonCheckout">Checkout</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function loadCartItems() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartItemsContainer = document.getElementById('cartItems');
+        let totalQuantity = 0;
+        let totalPrice = 0;
+
+        cartItemsContainer.innerHTML = '';
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            cart.forEach((item, index) => {
+                let itemRow = document.createElement('div');
+                itemRow.classList.add('cart-item');
+                itemRow.innerHTML = `
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-price">Rs. ${item.price}</div>
+                    <div class="item-quantity">
+                        <button onclick="decreaseQuantity(${index})">-</button>
+                        <span id="quantity-${index}">${item.quantity || 1}</span>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                    <div class="item-total-price" id="total-${index}">Rs. ${(item.price * (item.quantity || 1)).toFixed(2)}</div>
+                `;
+                cartItemsContainer.appendChild(itemRow);
+
+                totalQuantity += item.quantity || 1;
+                totalPrice += item.price * (item.quantity || 1);
+            });
+        }
+
+        document.getElementById('totalQuantity').innerText = totalQuantity;
+        document.getElementById('totalPrice').innerText = 'Rs.' + totalPrice.toFixed(2);
+    }
+
+    function increaseQuantity(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart[index].quantity = (cart[index].quantity || 1) + 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCartItems();
+    }
+
+    function decreaseQuantity(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+        } else {
+            cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCartItems();
+    }
+
+    function handleCheckout() {
+        let name = document.getElementById('name').value;
+        let phone = document.getElementById('phone').value;
+        let address = document.getElementById('address').value;
+        let country = document.getElementById('country').value;
+        let city = document.getElementById('city').value;
+
+        if (!name || !phone || !address || !country || !city) {
+            alert('Please fill in all the required fields!');
+            return;
+        }
+
+        alert('Checkout successful! Thank you for your order.');
+        localStorage.removeItem('cart');
+        loadCartItems();
+    }
+
+    window.onload = function () {
+        loadCartItems();
+        document.querySelector('.buttonCheckout').addEventListener('click', handleCheckout);
+    };
+</script>
+
+</body>
+</html>
